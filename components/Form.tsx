@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { Button, GestureResponderEvent, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useState } from 'react';
+import { Button, StyleSheet, TextInput, View } from 'react-native';
 
 interface FormInterface {
     addHandler: (text: string) => void
