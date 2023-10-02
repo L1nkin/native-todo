@@ -20,8 +20,8 @@ export default function Form({ addHandler }: FormInterface) {
 
     return (
         <View style={styles.main}>
-            <TextInput style={styles.input} onChangeText={onChange} value={text} placeholder='enter task' />
-            <Button title='add' onPress={() => buttonTapped()} />
+            <TextInput style={styles.input} onChangeText={onChange} value={text} placeholder='Enter a task' />
+            <Button title='Add' onPress={() => buttonTapped()} />
         </View>
     );
 }

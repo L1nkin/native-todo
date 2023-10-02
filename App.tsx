@@ -30,8 +30,8 @@ export default function App() {
     <View style={styles.container}>
       <Header title='ToDo List' />
       <Form addHandler={addTask} />
-      <View>
-        <FlatList data={listOfSections} renderItem={(element) => (
+      <View style={styles.container}>
+        <FlatList style={styles.list} data={listOfSections} renderItem={(element) => (
           <ListCell index={element.item.index} text={element.item.text} date={element.item.date} removeItem={removeItem} />
         )} />
       </View>
@@ -42,5 +42,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  list: {
+    bottom: 16
   }
 });
