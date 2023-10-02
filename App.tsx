@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useState } from 'react';
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
+import { Button, FlatList, KeyboardAvoidingView, Platform, StyleSheet, Text, View } from 'react-native';
 import Header from './components/Header';
 import ListCell from './components/ListCell';
 import Form from './components/Form';
@@ -28,13 +28,18 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Header title='ToDo List' />
-      <Form addHandler={addTask} />
-      <View style={styles.container}>
-        <FlatList style={styles.list} data={listOfSections} renderItem={(element) => (
-          <ListCell index={element.item.index} text={element.item.text} date={element.item.date} removeItem={removeItem} />
-        )} />
-      </View>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.container}
+      >
+        <Header title='ToDo List' />
+        <Form addHandler={addTask} />
+        <View style={styles.container}>
+          <FlatList style={styles.list} data={listOfSections} renderItem={(element) => (
+            <ListCell index={element.item.index} text={element.item.text} date={element.item.date} removeItem={removeItem} />
+          )} />
+        </View>
+      </KeyboardAvoidingView>
     </View>
   );
 }
