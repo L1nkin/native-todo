@@ -5,7 +5,7 @@ interface SearchInputInterface {
 }
 
 
-export default function SearchInput({ addHandler }: SearchInputInterface) {
+const SearchInput = ({ addHandler }: SearchInputInterface) => {
     const onChange = (inputText: string) => {
         addHandler(inputText)
     }
@@ -30,3 +30,5 @@ const styles = StyleSheet.create({
         borderRadius: 16
     }
 });
+
+export default SearchInput

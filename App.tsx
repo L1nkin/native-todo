@@ -4,18 +4,22 @@ import Header from './components/Header';
 import ListCell from './components/ListCell';
 import Form from './components/Form';
 import SearchInput from './components/SearchInput';
+import FlatListComponent from './components/FlatListComponent';
 
-interface ListObjectModel {
+export type ListObjectModel = {
   text: string,
   index: number,
   date: number
 }
 
 export default function App() {
-  const [listOfSections, setListOfSections] = useState(Array<ListObjectModel>)
+  const [listOfSections, setListOfSections] = useState<ListObjectModel[]>([])
   const [query, setQuery] = useState('')
 
   const searchedItems = useMemo(() => {
+    if (!query) {
+      return listOfSections
+    }
     return listOfSections.filter((item) => { return item.text.includes(query) })
   }, [listOfSections, query])
 
@@ -28,11 +32,7 @@ export default function App() {
   }
 
   const removeItem = (date: number) => {
-    setListOfSections(listOfSections.filter((item) => { return item.date != date }))
-  }
-
-  const searchItem = (query: string) => {
-    setQuery(query)
+    setListOfSections(prev => prev.filter((item) => { return item.date != date }))
   }
 
   return (
@@ -42,12 +42,8 @@ export default function App() {
         style={styles.container} >
         <Header title='ToDo List' />
         <Form addHandler={addTask} />
-        <SearchInput addHandler={searchItem} />
-        <View style={styles.container}>
-          <FlatList style={styles.list} data={searchedItems} renderItem={(element) => (
-            <ListCell index={element.item.index} text={element.item.text} date={element.item.date} removeItem={removeItem} />
-          )} />
-        </View>
+        <SearchInput addHandler={(query) => setQuery(query)} />
+        <FlatListComponent items={searchedItems} removeItem={removeItem} />
       </KeyboardAvoidingView>
     </View>
   );

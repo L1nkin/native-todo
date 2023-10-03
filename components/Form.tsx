@@ -6,14 +6,14 @@ interface FormInterface {
 }
 
 
-export default function Form({ addHandler }: FormInterface) {
+const Form = ({ addHandler }: FormInterface) => {
     const [text, setText] = useState('')
 
     const onChange = (inputText: string) => {
         setText(inputText)
     }
 
-    const buttonTapped = () => {
+    const onPress = () => {
         addHandler(text)
         setText('')
     }
@@ -21,7 +21,7 @@ export default function Form({ addHandler }: FormInterface) {
     return (
         <View style={styles.main}>
             <TextInput style={styles.input} onChangeText={onChange} value={text} placeholder='Enter a task' />
-            <Button title='Add' onPress={() => buttonTapped()} />
+            <Button title='Add' onPress={onPress} />
         </View>
     );
 }
@@ -39,3 +39,5 @@ const styles = StyleSheet.create({
         borderRadius: 16
     }
 });
+
+export default Form

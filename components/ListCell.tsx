@@ -1,6 +1,7 @@
+import { useCallback } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-interface ListCellProps {
+interface Props {
     index: number,
     text: string,
     date: number
@@ -8,11 +9,16 @@ interface ListCellProps {
     removeItem: (date: number) => void
 }
 
-export default function ListCell(props: ListCellProps) {
+const ListCell = ({ index, text, date, removeItem }: Props) => {
+
+    const remove = useCallback(() => {
+        removeItem(date)
+    }, [])
+
     return (
         <View style={styles.main}>
-            <Text style={styles.text}>{props.index}. {props.text}</Text>
-            <Button title={'Remove'} onPress={() => props.removeItem(props.date)} />
+            <Text style={styles.text}>{index}. {text}</Text>
+            <Button title={'Remove'} onPress={remove} />
         </View>
     );
 }
@@ -39,3 +45,5 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     }
 });
+
+export default ListCell

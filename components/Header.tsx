@@ -4,10 +4,10 @@ interface HeaderProps {
   title: string
 }
 
-export default function Header(props: HeaderProps) {
+const Header = ({ title }: HeaderProps) => {
   return (
     <View style={styles.main}>
-      <Text style={styles.text}>{props.title}</Text>
+      <Text style={styles.text}>{title}</Text>
     </View>
   );
 }
@@ -24,3 +24,5 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 });
+
+export default Header
