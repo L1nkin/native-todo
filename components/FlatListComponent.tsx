@@ -27,6 +27,7 @@ const FlatListComponent = ({ items, removeItem }: Props) => {
             <FlatList
                 style={styles.list}
                 data={items}
+                keyExtractor={item => item.date.toString()}
                 renderItem={(element) => renderItem(element.item)}
             />
         </View>
