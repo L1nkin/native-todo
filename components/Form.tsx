@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 
 interface FormInterface {
     addHandler: (text: string) => void
 }
-
 
 const Form = ({ addHandler }: FormInterface) => {
     const [text, setText] = useState('')
@@ -40,4 +39,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Form
+export default React.memo(Form)

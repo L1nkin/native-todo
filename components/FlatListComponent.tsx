@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { ListObjectModel } from '../App';
 import ListCell from './ListCell';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 
 interface Props {
     items: ListObjectModel[]
@@ -10,7 +10,6 @@ interface Props {
 }
 
 const FlatListComponent = ({ items, removeItem }: Props) => {
-
     const renderItem = useCallback((item: ListObjectModel) => {
         return (
             <ListCell
@@ -53,4 +52,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default FlatListComponent
+export default React.memo(FlatListComponent)

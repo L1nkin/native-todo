@@ -1,14 +1,15 @@
 import { StyleSheet, TextInput, View } from 'react-native';
+import React, { useCallback } from 'react';
 
 interface SearchInputInterface {
     addHandler: (text: string) => void
 }
 
-
 const SearchInput = ({ addHandler }: SearchInputInterface) => {
-    const onChange = (inputText: string) => {
+
+    const onChange = useCallback((inputText: string) => {
         addHandler(inputText)
-    }
+    }, [])
 
     return (
         <View style={styles.main}>
@@ -31,4 +32,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SearchInput
+export default React.memo(SearchInput)

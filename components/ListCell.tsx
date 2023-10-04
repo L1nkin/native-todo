@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 interface Props {
@@ -10,7 +10,6 @@ interface Props {
 }
 
 const ListCell = ({ index, text, date, removeItem }: Props) => {
-
     const remove = useCallback(() => {
         removeItem(date)
     }, [])
@@ -46,4 +45,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ListCell
+export default React.memo(ListCell)
